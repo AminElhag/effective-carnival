@@ -3,7 +3,7 @@
 <div align="center">
 
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-%2320232a.svg?style=for-the-badge&logo=springboot)
-![Java](https://img.shields.io/badge/Java-%2320232a.svg?style=for-the-badge&logo=kotlin)
+![Kptlin](https://img.shields.io/badge/Java-%2320232a.svg?style=for-the-badge&logo=kotlin)
 ![Hibernate](https://img.shields.io/badge/Hibernate-%2320232a.svg?style=for-the-badge&logo=hibernate)
 
 </div>
@@ -14,7 +14,7 @@ A robust backend service designed to manage gym operations including membership 
 ## Technology Stack
 
 ### Core Framework
-- Spring Boot 3.x
+- Spring Boot 3.5.3
 - Spring Web MVC
 - Spring Data JPA
 - Spring Security
@@ -24,12 +24,6 @@ A robust backend service designed to manage gym operations including membership 
 - Redis (Caching layer)
 - MongoDB (NoSQL for analytical data)
 
-### Infrastructure
-- Docker for containerization
-- Kubernetes for orchestration
-- AWS EC2/Elastic Beanstalk for deployment
-- Amazon RDS for database management
-
 ### API Documentation
 - OpenAPI/Swagger for API documentation
 - Spring HATEOAS for RESTful API design
@@ -38,11 +32,6 @@ A robust backend service designed to manage gym operations including membership 
 - JUnit 5
 - Mockito
 - Postman for API testing
-
-### CI/CD
-- Jenkins/GitHub Actions
-- SonarQube for code quality
-- Nexus/Artifactory for artifact management
 
 ## Features
 
@@ -120,16 +109,28 @@ Available at `/api-docs` endpoint when service is running. Major endpoints inclu
 ### Local Development
 ```bash
 # Clone repository
-git clone https://github.com/AminElhag/crispy-goggles-backend.git
+git clone https://github.com/AminElhag/effective-carnival
 
 # Build project
-mvn clean install
+gradle clean build
 
 # Run application
-mvn spring-boot:run
+gradle bootRun
 
 # Run tests
-mvn test
+gradle test
+
+If you are using the Gradle wrapper (recommended for projects), use the following commands:
+
+# Build project
+./gradlew clean build
+
+# Run application
+./gradlew bootRun
+
+# Run tests
+./gradlew test
+
 ```
 
 ## Deployment
@@ -187,6 +188,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 **Contact**  
 Backend Lead: [Amin Elhag](mailto:amingalalelhag@gmail.com)  
-Project Repository: [github.com/AminElhag/crispy-goggles-backend](https://github.com/AminElhag/crispy-goggles-backend)  
+Project Repository: [github.com/AminElhag/effective-carnival](https://github.com/AminElhag/effective-carnival)  
 
 **Note:** This backend service is designed to be consumed by mobile clients, web applications, and other backend services through its comprehensive RESTful API.
