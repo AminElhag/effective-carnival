@@ -1,0 +1,41 @@
+package com.example.backend.mobileClient.clients.service.dto
+
+import com.example.backend.mobileClient.clients.repository.entity.Client
+import java.time.LocalDateTime
+
+data class UserDto(
+    val firstName: String,
+    val middleName: String,
+    val lastName: String,
+    val idNumber: String,
+    val dataOfBirth: LocalDateTime?,
+    val genderId: Int,
+    val phoneNumber: String,
+    val email: String,
+    val password: String,
+    val emergencyContact: String,
+    val hearAboutUsId: Int,
+    val occupation: String,
+    val medicalConditionsIds: List<Int>,
+) {
+
+
+    fun toEntity(
+        publicId: String,
+    ) = Client(
+        firstName = firstName,
+        middleName = middleName,
+        lastName = lastName,
+        idNumber = idNumber,
+        dataOfBirth = dataOfBirth,
+        genderId = genderId,
+        phoneNumber = phoneNumber,
+        email = email,
+        password = password,
+        emergencyContact = emergencyContact,
+        hearAboutUsId = hearAboutUsId,
+        occupation = occupation,
+        medicalConditionsIds = medicalConditionsIds,
+        publicId = publicId,
+    )
+}
