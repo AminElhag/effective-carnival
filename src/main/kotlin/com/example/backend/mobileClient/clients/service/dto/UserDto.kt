@@ -22,6 +22,7 @@ data class UserDto(
 
     fun toEntity(
         publicId: String,
+        encryptedPassword: String,
     ) = Client(
         firstName = firstName,
         middleName = middleName,
@@ -31,7 +32,7 @@ data class UserDto(
         genderId = genderId,
         phoneNumber = phoneNumber,
         email = email,
-        password = password,
+        password = encryptedPassword,
         emergencyContact = emergencyContact,
         hearAboutUsId = hearAboutUsId,
         occupation = occupation,

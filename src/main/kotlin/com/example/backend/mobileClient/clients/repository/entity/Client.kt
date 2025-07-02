@@ -3,6 +3,7 @@ package com.example.backend.mobileClient.clients.repository.entity
 import jakarta.persistence.*
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.Size
+import org.springframework.security.crypto.password.PasswordEncoder
 import java.time.LocalDateTime
 import java.util.*
 
@@ -37,7 +38,7 @@ data class Client(
     @Column(name = "email", nullable = false, unique = true) @Email
     val email: String,
     @Column(name = "password", nullable = false)
-    val password: String,
+    private var password: String,
     @Column(name = "emergency_contact", nullable = false)
     val emergencyContact: String,
     @Column(name = "hear_about_us_id", nullable = false)
@@ -55,6 +56,13 @@ data class Client(
     @Column(name = "is_validation")
     val isValidation: Boolean = false,
 ) {
+
+    fun getPassword(): String = password
+
+    // Method to update password with encryption
+    fun setPassword(rawPassword: String, encoder: PasswordEncoder) {
+        this.password = encoder.encode(rawPassword)
+    }
 
 }
 
