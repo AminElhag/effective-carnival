@@ -8,4 +8,5 @@ import java.util.UUID
 @Repository
 interface ClientRepository: CrudRepository<Client, UUID> {
     fun findTopByPublicIdStartingWithOrderByPublicIdDesc(prefix: String): Client?
+    fun findByPublicId(clientId: String): Client
 }

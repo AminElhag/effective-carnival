@@ -1,8 +1,10 @@
 package com.example.backend.mobileClient.clients.controller
 
+import com.example.backend.mobileClient.clients.controller.models.AuthResponse
 import com.example.backend.mobileClient.clients.controller.models.UserRequest
 import com.example.backend.mobileClient.clients.service.ClientService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -24,7 +26,9 @@ class ClientController {
     @PostMapping("/register")
     fun registerClient(
         @RequestBody request: UserRequest
-    ) {
-        clientService.createNewClient(request.toDto())
+    ) : ResponseEntity<AuthResponse> {
+        val createNewClient = clientService.createNewClient(request.toDto())
+        println(createNewClient.token)
+        return ResponseEntity.ok(createNewClient)
     }
 }

@@ -3,6 +3,9 @@ package com.example.backend.mobileClient.clients.repository.entity
 import jakarta.persistence.*
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.Size
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.crypto.password.PasswordEncoder
 import java.time.LocalDateTime
 import java.util.*
@@ -55,15 +58,20 @@ data class Client(
     val isDeleted: Boolean = false,
     @Column(name = "is_validation")
     val isValidation: Boolean = false,
-) {
-
-    fun getPassword(): String = password
-
-    // Method to update password with encryption
-    fun setPassword(rawPassword: String, encoder: PasswordEncoder) {
-        this.password = encoder.encode(rawPassword)
+    @Column(name = "roles")
+    val roles: String = "ROLE_USER"
+) : UserDetails {
+    override fun getAuthorities(): Collection<GrantedAuthority> {
+        return roles.split(",").map { SimpleGrantedAuthority(it.trim()) }
     }
 
+    override fun getPassword(): String? {
+        return password
+    }
+
+    override fun getUsername(): String? {
+        return publicId
+    }
 }
 
 @Converter

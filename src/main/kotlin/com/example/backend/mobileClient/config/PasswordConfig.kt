@@ -1,4 +1,4 @@
-package com.example.backend.mobileClient.util
+package com.example.backend.mobileClient.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
