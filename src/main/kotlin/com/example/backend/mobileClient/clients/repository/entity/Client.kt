@@ -48,7 +48,12 @@ data class Client(
     val hearAboutUsId: Int,
     @Column(name = "occupation", nullable = false)
     val occupation: String,
-    @Column(name = "medical_conditions_ids") @Convert(converter = IntegerListConverter::class)
+    @ElementCollection
+    @CollectionTable(
+        name = "client_medical_conditions",
+        joinColumns = [JoinColumn(name = "client_id")]
+    )
+    @Column(name = "condition_id")
     val medicalConditionsIds: List<Int?>,
     @Column(name = "create_at")
     val createAt: LocalDateTime = LocalDateTime.now(),
