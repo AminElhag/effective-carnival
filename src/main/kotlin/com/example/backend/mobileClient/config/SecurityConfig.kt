@@ -30,6 +30,15 @@ class SecurityConfig(
                 requests
                     .anyRequest().permitAll()
             }
+            .headers { headers ->
+                headers
+                    .frameOptions { frameOptions ->
+                        frameOptions.disable()
+                    }
+                    .contentSecurityPolicy { policy ->
+                        policy.policyDirectives("default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:")
+                    }
+            }
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter::class.java)
 
         return http.build()
