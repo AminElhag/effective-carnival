@@ -1,17 +1,16 @@
 package com.example.backend.mobileClient.common
 
-import com.example.backend.mobileClient.clients.repository.ClientRepository
+import com.example.backend.mobileClient.features.members.repository.MemberRepository
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
-import org.springframework.security.core.userdetails.UsernameNotFoundException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class CodeGeneratorService(
     @Value("\${app.sequence.prefix}") private val codePrefix: String,
-    private val repository: ClientRepository
+    private val repository: MemberRepository
 ) {
     private val maxSequence = 9999
 
@@ -26,7 +25,7 @@ class CodeGeneratorService(
 
 @Service
 class UserDetailsServiceImpl(
-    private val userRepository: ClientRepository
+    private val userRepository: MemberRepository
 ) : UserDetailsService {
 
     override fun loadUserByUsername(username: String): UserDetails {

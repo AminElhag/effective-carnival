@@ -1,8 +1,8 @@
-package com.example.backend.mobileClient.clients.controller
+package com.example.backend.mobileClient.features.members.controller
 
-import com.example.backend.mobileClient.clients.controller.models.AuthResponse
-import com.example.backend.mobileClient.clients.controller.models.UserRequest
-import com.example.backend.mobileClient.clients.service.ClientService
+import com.example.backend.mobileClient.features.members.controller.models.AuthResponse
+import com.example.backend.mobileClient.features.members.controller.models.UserRequest
+import com.example.backend.mobileClient.features.members.service.MemberService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/api/v1/client")
-class ClientController {
+class MembersController {
 
     @Autowired
-    lateinit var clientService: ClientService
+    lateinit var clientService: MemberService
 
     @GetMapping
     fun welcome() : String {

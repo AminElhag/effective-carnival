@@ -1,21 +1,24 @@
-package com.example.backend.mobileClient.clients.repository.entity
+package com.example.backend.mobileClient.features.members.repository.entity
 
 import jakarta.persistence.*
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.Size
+import org.hibernate.annotations.CreationTimestamp
+import org.hibernate.annotations.UpdateTimestamp
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
-import org.springframework.security.crypto.password.PasswordEncoder
 import java.time.LocalDateTime
-import java.util.*
 
-@Entity(name = "client")
-data class Client(
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-    private var id: UUID? = null,
+@Entity(name = "member")
+data class Member(
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long = 0,
+
     @Column(name = "client_id", nullable = false, unique = true)
     val publicId: String,
+
     @Column(name = "first_name", nullable = false, updatable = false)
     val firstName: String,
     @Column(name = "middle_name", updatable = false)
@@ -55,16 +58,18 @@ data class Client(
     )
     @Column(name = "condition_id")
     val medicalConditionsIds: List<Int?>,
-    @Column(name = "create_at")
-    val createAt: LocalDateTime = LocalDateTime.now(),
-    @Column(name = "update_at")
-    val updateAt: LocalDateTime = LocalDateTime.now(),
     @Column(name = "is_deleted")
     val isDeleted: Boolean = false,
     @Column(name = "is_validation")
     val isValidation: Boolean = false,
     @Column(name = "roles")
-    val roles: String = "ROLE_USER"
+    val roles: String = "ROLE_USER",
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    val createdAt: LocalDateTime = LocalDateTime.now(),
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    val updatedAt: LocalDateTime = LocalDateTime.now()
 ) : UserDetails {
     override fun getAuthorities(): Collection<GrantedAuthority> {
         return roles.split(",").map { SimpleGrantedAuthority(it.trim()) }

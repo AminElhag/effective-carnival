@@ -1,4 +1,4 @@
-package com.example.backend.mobileClient.clients.controller.models
+package com.example.backend.mobileClient.features.members.controller.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

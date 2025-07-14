@@ -1,6 +1,6 @@
-package com.example.backend.mobileClient.clients.controller.models
+package com.example.backend.mobileClient.features.members.controller.models
 
-import com.example.backend.mobileClient.clients.service.dto.UserDto
+import com.example.backend.mobileClient.features.members.service.dto.MemberDto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import java.time.LocalDateTime
@@ -34,7 +34,7 @@ data class UserRequest(
     @SerialName("medical_conditions_ids")
     val medicalConditionsIds: List<Int>,
 ) {
-    fun toDto() = UserDto(
+    fun toDto() = MemberDto(
         firstName = firstName,
         middleName = middleName,
         lastName = lastName,

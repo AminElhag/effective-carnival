@@ -1,9 +1,9 @@
-package com.example.backend.mobileClient.clients.service.dto
+package com.example.backend.mobileClient.features.members.service.dto
 
-import com.example.backend.mobileClient.clients.repository.entity.Client
+import com.example.backend.mobileClient.features.members.repository.entity.Member
 import java.time.LocalDateTime
 
-data class UserDto(
+data class MemberDto(
     val firstName: String,
     val middleName: String,
     val lastName: String,
@@ -23,7 +23,7 @@ data class UserDto(
     fun toEntity(
         publicId: String,
         encryptedPassword: String,
-    ) = Client(
+    ) = Member(
         firstName = firstName,
         middleName = middleName,
         lastName = lastName,
