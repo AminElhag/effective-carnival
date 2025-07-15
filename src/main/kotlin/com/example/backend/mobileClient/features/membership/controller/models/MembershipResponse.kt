@@ -5,6 +5,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class MembershipResponse(
-    @SerialName("plans")
-    val plans: List<Plan>,
+    @SerialName("membership_plans")
+    val plans:List<MembershipPlan>
 )

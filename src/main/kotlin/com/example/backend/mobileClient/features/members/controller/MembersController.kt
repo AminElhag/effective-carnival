@@ -27,6 +27,7 @@ class MembersController {
     fun registerClient(
         @RequestBody request: UserRequest
     ) : ResponseEntity<AuthResponse> {
+        println(request)
         val createNewClient = clientService.createNewClient(request.toDto())
         println(createNewClient.token)
         return ResponseEntity.ok(createNewClient)

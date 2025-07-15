@@ -34,6 +34,7 @@ class MemberServiceImpl : MemberService {
     lateinit var userDetailsService: UserDetailsService
 
     override fun createNewClient(user: MemberDto): AuthResponse {
+        println(user)
         val save = memberRepository.save(
             user.toEntity(
                 publicIdGenerator.generateNextCode(),

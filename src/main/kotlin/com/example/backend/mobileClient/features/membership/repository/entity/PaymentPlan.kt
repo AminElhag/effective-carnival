@@ -3,6 +3,7 @@ package com.example.backend.mobileClient.features.membership.repository.entity
 import com.example.backend.mobileClient.common.PaymentMethod
 import com.example.backend.mobileClient.common.PeriodType
 import com.example.backend.mobileClient.common.PlanType
+import com.example.backend.mobileClient.features.membership.service.dto.PaymentPlanDto
 import jakarta.persistence.*
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.NotNull
@@ -29,15 +30,15 @@ data class PaymentPlan(
     val fiscalName: String? = null,
 
     @Column(name = "description", columnDefinition = "TEXT")
-    val description: String? = null,
+    val description: String?,
 
     @Positive(message = "Must be positive")
     @Column(name = "minimum_age")
-    val minimumAge: Int? = null,
+    val minimumAge: Int?,
 
     @Positive(message = "Must be positive")
     @Column(name = "max_age")
-    val maxAge: Int? = null,
+    val maxAge: Int?,
 
     @Column(name = "active")
     val active: Boolean = false,
@@ -80,7 +81,7 @@ data class PaymentPlan(
     //Periods
     @NotNull(message = "Payment interval is required")
     @Column(name = "payment_interval")
-    val paymentInterval: Int = 1,
+    val paymentInterval: Int?,
 
     @NotNull(message = "Payment interval Type is required")
     @Enumerated(EnumType.STRING)
@@ -89,7 +90,7 @@ data class PaymentPlan(
 
     @NotNull(message = "Commitment period is required")
     @Column(name = "commitment_period")
-    val commitmentPeriod: Int = 1,
+    val commitmentPeriod: Int?,
 
     @NotNull(message = "Commitment Period Type is required")
     @Enumerated(EnumType.STRING)
@@ -97,11 +98,11 @@ data class PaymentPlan(
     val commitmentPeriodType: PeriodType = PeriodType.DAY,
 
     @Column(name = "minimum_cancellation_period")
-    val minimumCancellationPeriod: Int? = null,
+    val minimumCancellationPeriod: Int?,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "minimum_cancellation_period_tType")
-    val minimumCancellationPeriodType: PeriodType? = null,
+    val minimumCancellationPeriodType: PeriodType  = PeriodType.DAY,
 
     @Column(name = "maximum_cancellation_period")
     val maximumCancellationPeriod: Int? = null,
@@ -109,7 +110,7 @@ data class PaymentPlan(
     @NotNull(message = "Commitment Period Type is required")
     @Enumerated(EnumType.STRING)
     @Column(name = "maximum_cancellation_period_type")
-    val maximumCancellationPeriodType: PeriodType? = null,
+    val maximumCancellationPeriodType: PeriodType = PeriodType.DAY,
 
     @Column(name = "first_payment_on_sign_up_date")
     val firstPaymentOnSignUpDate: Boolean = false,
@@ -121,7 +122,7 @@ data class PaymentPlan(
     val isLimitNumberVisitsInThePeriod: Boolean = false,
 
     @Column("limit_number_of_visits_in_a_period")
-    val limitNumberVisitsInThePeriod: Int = 0,
+    val limitNumberVisitsInThePeriod: Int? = null,
 
     @Column("can_be_renewed")
     val canBeRenewed: Boolean = false,
@@ -148,4 +149,43 @@ data class PaymentPlan(
     @UpdateTimestamp
     @Column(name = "updated_at")
     val updatedAt: LocalDateTime = LocalDateTime.now(),
-) {}
+) {
+    fun toDto(): PaymentPlanDto {
+        return PaymentPlanDto(
+            id = id,
+            name = name,
+            fiscalName = fiscalName,
+            description = description,
+            minimumAge = minimumAge,
+            maxAge = minimumAge,
+            active = active,
+            planType = planType,
+            membershipFee = membershipFee,
+            membershipFeeTax = membershipFeeTax,
+            administrationFee = administrationFee,
+            administrationFeeTax = administrationFeeTax,
+            joiningFee = joiningFee,
+            joiningFeeTax = joiningFeeTax,
+            paymentMethods = paymentMethods,
+            paymentInterval = paymentInterval,
+            paymentIntervalType = paymentIntervalType,
+            commitmentPeriod = commitmentPeriod,
+            commitmentPeriodType = commitmentPeriodType,
+            minimumCancellationPeriod = minimumCancellationPeriod,
+            minimumCancellationPeriodType = minimumCancellationPeriodType,
+            maximumCancellationPeriod = maximumCancellationPeriod,
+            maximumCancellationPeriodType = maximumCancellationPeriodType,
+            firstPaymentOnSignUpDate = firstPaymentOnSignUpDate,
+            automaticallyEndContractAfterCommitmentPeriodReached = automaticallyEndContractAfterCommitmentPeriodReached,
+            isLimitNumberVisitsInThePeriod = isLimitNumberVisitsInThePeriod,
+            limitNumberVisitsInThePeriod = limitNumberVisitsInThePeriod,
+            canBeRenewed = canBeRenewed,
+            automaticRenew = automaticRenew,
+            agreements = agreements,
+            startDate = startDate,
+            endDate = endDate,
+            createdAt = createdAt,
+            updatedAt = updatedAt,
+        )
+    }
+}
