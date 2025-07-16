@@ -16,6 +16,7 @@ import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import org.hibernate.validator.constraints.Length
 import java.math.BigDecimal
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Entity
@@ -85,11 +86,11 @@ data class Discount(
 
     @CreationTimestamp
     @Column(name = "start_date")
-    val startDate: LocalDateTime? = null,
+    val startDate: LocalDate? = null,
 
     @CreationTimestamp
     @Column(name = "end_date")
-    val endDate: LocalDateTime? = null,
+    val endDate: LocalDate? = null,
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
