@@ -3,7 +3,7 @@ package com.example.backend.mobileClient.features.membership.service.dto
 import com.example.backend.mobileClient.common.PaymentMethod
 import com.example.backend.mobileClient.common.PeriodType
 import com.example.backend.mobileClient.common.PlanType
-import com.example.backend.mobileClient.features.membership.controller.models.MembershipPlan
+import com.example.backend.mobileClient.features.membership.controller.models.MembershipPlanResponse
 import com.example.backend.mobileClient.features.membership.repository.entity.Agreement
 import java.math.BigDecimal
 import java.time.LocalDateTime
@@ -47,16 +47,17 @@ data class PaymentPlanDto(
     /*fun toPaymentPlan(): PaymentPlan {
         return PaymentPlan()
     }*/
-    fun toMembershipResponse() = MembershipPlan(
+    fun toMembershipResponse() = MembershipPlanResponse(
         id = id!!,
         name = name!!,
         price = membershipFee?.add(administrationFee)?.add(joiningFee)?.toDouble() ?: 0.0,
         description = description!!,
         commitmentPeriod = "$commitmentPeriod $commitmentPeriodType",
         paymentInterval = "$paymentInterval $paymentIntervalType",
-        minimumCancellationPeriod = if (minimumCancellationPeriod != null)"$minimumCancellationPeriod $minimumCancellationPeriodType" else null,
-        maxCancellationPeriod = if (maximumCancellationPeriod != null)"$maximumCancellationPeriod $maximumCancellationPeriodType" else null,
+        minimumCancellationPeriod = if (minimumCancellationPeriod != null) "$minimumCancellationPeriod $minimumCancellationPeriodType" else null,
+        maxCancellationPeriod = if (maximumCancellationPeriod != null) "$maximumCancellationPeriod $maximumCancellationPeriodType" else null,
         limitNumberOfVisits = limitNumberVisitsInThePeriod,
         canBeRenew = canBeRenewed ?: false,
+        agreements = agreements?.map { it.toResponse() },
     )
 }

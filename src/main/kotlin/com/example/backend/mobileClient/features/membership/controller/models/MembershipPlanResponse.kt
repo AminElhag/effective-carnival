@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class MembershipPlan(
+data class MembershipPlanResponse(
     @SerialName("id")
     var id: Long,
     @SerialName("name")
@@ -24,5 +24,7 @@ data class MembershipPlan(
     @SerialName("limit_number_of_visits")
     val limitNumberOfVisits: Int?,
     @SerialName("can_be_renew")
-    val canBeRenew: Boolean
+    val canBeRenew: Boolean,
+    @SerialName("agreement")
+    val agreements: List<AgreementResponse>?,
 )

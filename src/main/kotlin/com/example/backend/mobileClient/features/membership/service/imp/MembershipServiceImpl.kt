@@ -44,8 +44,15 @@ class MembershipServiceImpl : MembershipService {
             agreements = listOf(
                 Agreement(
                     id = 1,
-                    title = "BASIC_MEMBERSHIP_2024",
-                    body = BASIC_MEMBERSHIP_HTML
+                    title = "Terms of Service",
+                    body = BASIC_MEMBERSHIP_HTML,
+                    required = true,
+                ),
+                Agreement(
+                    id = 2,
+                    title = "Privacy Policy",
+                    body = PREMIUM_MEMBERSHIP_HTML,
+                    required = true
                 )
             ),
 
@@ -76,9 +83,16 @@ class MembershipServiceImpl : MembershipService {
             automaticRenew = true,
             agreements = listOf(
                 Agreement(
+                    id = 1,
+                    title = "Terms of Service",
+                    body = BASIC_MEMBERSHIP_HTML,
+                    required = true,
+                ),
+                Agreement(
                     id = 2,
-                    title = "PREMIUM_MEMBERSHIP_2024",
-                    body = PREMIUM_MEMBERSHIP_HTML
+                    title = "Privacy Policy",
+                    body = PREMIUM_MEMBERSHIP_HTML,
+                    required = true
                 )
             )
         ),
@@ -108,9 +122,22 @@ class MembershipServiceImpl : MembershipService {
             automaticRenew = false,
             agreements = listOf(
                 Agreement(
+                    id = 1,
+                    title = "Terms of Service",
+                    body = BASIC_MEMBERSHIP_HTML,
+                    required = true,
+                ),
+                Agreement(
+                    id = 2,
+                    title = "Privacy Policy",
+                    body = PREMIUM_MEMBERSHIP_HTML,
+                    required = true
+                ),
+                Agreement(
                     id = 3,
-                    title = "STUDENT_MEMBERSHIP_2024",
-                    body = STUDENT_MEMBERSHIP_HTML
+                    title = "Student Policy",
+                    body = STUDENT_MEMBERSHIP_HTML,
+                    required = true
                 )
             )
         )
