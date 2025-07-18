@@ -1,6 +1,7 @@
 package com.example.backend.mobileClient.features.members.service.dto
 
 import com.example.backend.mobileClient.features.members.repository.entity.Member
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 data class MemberDto(
@@ -8,7 +9,7 @@ data class MemberDto(
     val middleName: String,
     val lastName: String,
     val idNumber: String,
-    val dataOfBirth: LocalDateTime?,
+    val dataOfBirth: LocalDate?,
     val genderId: Int,
     val phoneNumber: String,
     val email: String,

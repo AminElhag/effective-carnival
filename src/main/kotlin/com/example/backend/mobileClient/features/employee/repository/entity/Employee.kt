@@ -1,13 +1,9 @@
 package com.example.backend.mobileClient.features.employee.repository.entity
 
+import com.example.backend.mobileClient.common.EmploymentType
+import com.example.backend.mobileClient.common.Gender
 import com.fasterxml.jackson.annotation.JsonIgnore
-import jakarta.persistence.Column
-import jakarta.persistence.Entity
-import jakarta.persistence.EnumType
-import jakarta.persistence.Enumerated
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
+import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate
 import org.springframework.data.annotation.LastModifiedDate
 import java.time.LocalDate
@@ -27,40 +23,40 @@ data class Employee(
     val lastName: String,
 
     @Column(name = "birthdate")
-    val birthdate: LocalDate?,
+    val birthdate: LocalDate? = null,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "gender", length = 10)
-    val gender: Gender?,
+    val gender: Gender? = null,
 
     @Column(name = "email", nullable = false, unique = true, length = 100)
     val email: String,
 
     @Column(name = "mobile_phone", length = 20)
-    val mobilePhone: String?,
+    val mobilePhone: String? = null,
 
     @Column(name = "home_phone", length = 20)
-    val homePhone: String?,
+    val homePhone: String? = null,
 
     @Column(name = "street", length = 100)
-    val street: String?,
+    val street: String? = null,
 
     @Column(name = "city", length = 50)
-    val city: String?,
+    val city: String? = null,
 
     @Column(name = "post_code", length = 20)
-    val postCode: String?,
+    val postCode: String? = null,
 
     @Column(name = "state", length = 50)
-    val state: String?,
+    val state: String? = null,
 
     // Employment Details
     @Enumerated(EnumType.STRING)
     @Column(name = "employment_type", length = 20)
-    val employmentType: EmploymentType?,
+    val employmentType: EmploymentType? = null,
 
     @Column(name = "employment_date")
-    val employmentDate: LocalDate?,
+    val employmentDate: LocalDate? = null,
 
     @Column(name = "available_in_new_clubs")
     val availableInNewClubs: Boolean = false,
@@ -80,21 +76,21 @@ data class Employee(
     val hasLoginAccount: Boolean = false,
 
     @Column(name = "username", unique = true, length = 50)
-    val username: String?,
+    val username: String? = null,
 
     @JsonIgnore
     @Column(name = "password", length = 100)
-    val password: String?,
+    val password: String? = null,
 
     @Column(name = "profile_picture_path", length = 200)
-    val profilePicturePath: String?,
+    val profilePicturePath: String? = null,
 
     // Additional Settings
     @Column(name = "auto_deactivate")
     val autoDeactivate: Boolean = true,
 
     @Column(name = "employee_identifier", unique = true, length = 50)
-    val employeeIdentifier: String?,
+    val employeeIdentifier: String? = null,
 
     @Column(name = "marketing_newsletters")
     val marketingNewsletters: Boolean = false,
@@ -109,11 +105,5 @@ data class Employee(
     @LastModifiedDate
     val lastModifiedDate: LocalDateTime? = null
 ) {
-    enum class Gender {
-        MALE, FEMALE, OTHER
-    }
 
-    enum class EmploymentType {
-        FULL_TIME, PART_TIME, CONTRACTOR, TEMPORARY
-    }
 }

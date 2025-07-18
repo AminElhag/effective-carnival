@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Entity(name = "member")
@@ -32,7 +33,7 @@ data class Member(
     )
     val idNumber: String,
     @Column(name = "data_of_birth", nullable = false)
-    val dataOfBirth: LocalDateTime?,
+    val dataOfBirth: LocalDate?,
     @Column(name = "gender_id", nullable = false)
     val genderId: Int = 1,
     @Column(name = "phone_number", nullable = false, unique = true) @Size(

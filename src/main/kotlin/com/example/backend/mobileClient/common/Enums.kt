@@ -11,3 +11,5 @@ enum class BillingCycle(id: Int) { DAILY(0), WEEKLY(1), MONTHLY(2), QUARTERLY(3)
 enum class PlanType(id: Int) { CONTRACT(0), CORPORATE(1), COURSE(2), NO_CONTRACT(3) }
 enum class PeriodType(id: Int) { DAY(0), WEEK(1), MONTH(1), YEAR(3) }
 enum class DiscountType(id: Int) { PERCENTAGE(0), FIXED_PRICE(1), AMOUNT(2) }
+enum class Gender { MALE, FEMALE }
+enum class EmploymentType { FULL_TIME, PART_TIME, CONTRACTOR, TEMPORARY }

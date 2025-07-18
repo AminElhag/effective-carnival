@@ -3,6 +3,7 @@ package com.example.backend.mobileClient.features.members.controller.models
 import com.example.backend.mobileClient.features.members.service.dto.MemberDto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Serializable
@@ -39,7 +40,7 @@ data class UserRequest(
         middleName = middleName,
         lastName = lastName,
         idNumber = idNumber,
-        dataOfBirth = LocalDateTime.parse(dataOfBirth),
+        dataOfBirth = LocalDate.parse(dataOfBirth),
         genderId = genderId,
         phoneNumber = phoneNumber,
         email = email,

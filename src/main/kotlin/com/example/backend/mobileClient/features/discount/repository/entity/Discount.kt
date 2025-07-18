@@ -32,8 +32,8 @@ data class Discount(
     @Column(name = "active")
     val active: Boolean = true,
 
-    @Column(name = "membership_fee")
-    val membershipFee:Boolean = false,
+    @Column(name = "has_membership_fee_discount")
+    val hasMembershipFeeDiscount:Boolean = false,
 
     @Column(name = "membership_fee_discount")
     val membershipFeeDiscount: BigDecimal = BigDecimal.ZERO,
@@ -41,20 +41,20 @@ data class Discount(
     @Column(name = "membership_fee_discount_type")
     val membershipFeeDiscountType: DiscountType? = null,
 
-    @Column(name = "has_admin_fee")
-    val hasAdminFee:Boolean = false,
+    @Column(name = "has_admin_fee_discount")
+    val hasAdminFeeDiscount:Boolean = false,
 
-    @Column(name = "admin_fee")
-    val adminFee: BigDecimal = BigDecimal.ZERO,
+    @Column(name = "admin_fee_discount")
+    val adminFeeDiscount: BigDecimal = BigDecimal.ZERO,
 
     @Column(name = "admin_fee_discount_type")
     val adminFeeDiscountType: DiscountType? = null,
 
-    @Column(name = "has_join_fee")
-    val hasJoinFee:Boolean = false,
+    @Column(name = "has_join_fee_discount")
+    val hasJoinFeeDiscount:Boolean = false,
 
-    @Column(name = "join_fee")
-    val joinFee: BigDecimal = BigDecimal.ZERO,
+    @Column(name = "join_fee_discount")
+    val joinFeeDiscount: BigDecimal = BigDecimal.ZERO,
 
     @Column(name = "join_fee_discount_type")
     val joinFeeDiscountType: DiscountType? = null,
