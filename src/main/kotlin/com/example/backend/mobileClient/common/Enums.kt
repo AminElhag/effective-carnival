@@ -13,3 +13,5 @@ enum class PeriodType(id: Int) { DAY(0), WEEK(1), MONTH(1), YEAR(3) }
 enum class DiscountType(id: Int) { PERCENTAGE(0), FIXED_PRICE(1), AMOUNT(2) }
 enum class Gender { MALE, FEMALE }
 enum class EmploymentType { FULL_TIME, PART_TIME, CONTRACTOR, TEMPORARY }
+enum class PaymentProvider { VISA, MASTERCARD, AMEX, DISCOVER, UNKNOWN }
+enum class PaymentStatus { PENDING, PROCESSING, COMPLETED, FAILED, CANCELLED, REFUNDED }

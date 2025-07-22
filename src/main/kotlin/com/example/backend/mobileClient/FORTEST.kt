@@ -3,11 +3,17 @@ package com.example.backend.mobileClient
 import com.example.backend.mobileClient.AgreementTemplates.BASIC_MEMBERSHIP_HTML
 import com.example.backend.mobileClient.AgreementTemplates.PREMIUM_MEMBERSHIP_HTML
 import com.example.backend.mobileClient.AgreementTemplates.STUDENT_MEMBERSHIP_HTML
+import com.example.backend.mobileClient.common.ContractType
 import com.example.backend.mobileClient.common.DiscountType
+import com.example.backend.mobileClient.common.EmploymentType
+import com.example.backend.mobileClient.common.Gender
 import com.example.backend.mobileClient.common.PaymentMethod
 import com.example.backend.mobileClient.common.PeriodType
 import com.example.backend.mobileClient.common.PlanType
+import com.example.backend.mobileClient.features.contract.repository.Contract
 import com.example.backend.mobileClient.features.discount.repository.entity.Discount
+import com.example.backend.mobileClient.features.employee.repository.entity.Employee
+import com.example.backend.mobileClient.features.members.repository.entity.Member
 import com.example.backend.mobileClient.features.membership.repository.entity.Agreement
 import com.example.backend.mobileClient.features.membership.repository.entity.PaymentPlan
 import java.math.BigDecimal
@@ -382,4 +388,65 @@ val discounts = listOf(
         promoCode = "CORP1234",
         onePerUser = false
     )
+)
+
+val contract = Contract(
+    id = 1,
+    member = Member(
+        id = 1,
+        publicId = "1001001233",
+        firstName = "Amin",
+        middleName = "Galal",
+        lastName = "Elhag",
+        idNumber = "12002010020",
+        dataOfBirth = LocalDate.now(),
+        genderId = 1,
+        phoneNumber = "010101011",
+        email = "email@email.com",
+        password = "password",
+        emergencyContact = "1234567890",
+        hearAboutUsId = 1,
+        occupation = "Test",
+        medicalConditionsIds = emptyList(),
+        isDeleted = false,
+        isValidation = true,
+    ),
+    consultant = Employee(
+        id = 2,
+        firstName = "Amin",
+        lastName = "Elhag",
+        birthdate = LocalDate.now(),
+        gender = Gender.MALE,
+        email = "email@email.com",
+        mobilePhone = "010101011",
+        homePhone = "010101011",
+        street = "Street",
+        city = "City",
+        state = "State",
+        systemRole = "System",
+        availableInNewClubs = false,
+        employmentDate = LocalDate.now(),
+        employmentType = EmploymentType.FULL_TIME,
+        postCode = "TODO()",
+        position = "T",
+        department = "TODO()",
+        hasLoginAccount = true,
+        username = "TODO()",
+        password = "TODO()",
+        profilePicturePath = "TODO()",
+        autoDeactivate = false,
+        employeeIdentifier = "TODO()",
+        marketingNewsletters = false,
+        active = true,
+    ),
+    plan = plans[1],
+    type = ContractType.MAIN,
+    endDate = LocalDate.now(),
+    commitmentEndDate = LocalDate.now(),
+    paymentMethod = PaymentMethod.DIRECT_DEBIT,
+    totalAmount = BigDecimal("100.00"),
+    totalAmountWithoutTax = BigDecimal("90.00"),
+    totalTax = BigDecimal("10.00"),
+    totalPaid = BigDecimal("100.00"),
+    remainingAmount = BigDecimal.ZERO,
 )
