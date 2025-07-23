@@ -9,4 +9,6 @@ import java.util.UUID
 interface MemberRepository: CrudRepository<Member, Long> {
     fun findTopByPublicIdStartingWithOrderByPublicIdDesc(prefix: String): Member?
     fun findByPublicId(clientId: String): Member?
+    fun findByEmail(email: String): Member?
+    fun findByPhoneNumber(phone: String): Member?
 }

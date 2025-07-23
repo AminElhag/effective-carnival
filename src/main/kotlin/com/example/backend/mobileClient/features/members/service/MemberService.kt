@@ -5,4 +5,5 @@ import com.example.backend.mobileClient.features.members.service.dto.MemberDto
 
 interface MemberService {
     fun createNewClient(user: MemberDto): AuthResponse
+    fun login(username: String, password: String): String
 }

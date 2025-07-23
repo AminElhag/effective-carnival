@@ -1,5 +1,6 @@
 package com.example.backend.mobileClient.common.Service
 
+import com.example.backend.mobileClient.common.exception.UserNotFoundException
 import com.example.backend.mobileClient.features.members.repository.MemberRepository
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
@@ -13,6 +14,6 @@ class UserDetailsServiceImpl(
 ) : UserDetailsService {
 
     override fun loadUserByUsername(username: String): UserDetails? {
-        return userRepository.findByPublicId((username)) ?: throw UsernameNotFoundException("User $username not found")
+        return userRepository.findByPublicId((username)) ?: throw UserNotFoundException(username)
     }
 }

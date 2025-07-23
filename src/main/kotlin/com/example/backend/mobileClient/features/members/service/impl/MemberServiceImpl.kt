@@ -5,6 +5,8 @@ import com.example.backend.mobileClient.features.members.repository.MemberReposi
 import com.example.backend.mobileClient.features.members.service.MemberService
 import com.example.backend.mobileClient.features.members.service.dto.MemberDto
 import com.example.backend.mobileClient.common.CodeGeneratorService
+import com.example.backend.mobileClient.common.exception.IncorrectPasswordException
+import com.example.backend.mobileClient.common.exception.UserNotFoundException
 import com.example.backend.mobileClient.util.JwtUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.authentication.AuthenticationManager
@@ -46,5 +48,23 @@ class MemberServiceImpl : MemberService {
         return AuthResponse(
             token = token,
         )
+    }
+
+    override fun login(username: String, password: String) : String{
+        val user = if (username.endsWith(".com")){
+            memberRepository.findByEmail(username)
+        }else {
+            memberRepository.findByPhoneNumber(username)
+        }
+        if (user == null) throw UserNotFoundException(username)
+        println("User Password : "+user.password)
+        println("Request Enc Password : "+encryptedPassword.encode(password))
+
+        if (!encryptedPassword.matches(password, user.password)) {
+            throw IncorrectPasswordException()
+        }
+        val userDetails = userDetailsService.loadUserByUsername(user.publicId)
+        val token = jwtUtils.generateToken(userDetails)
+        return token
     }
 }
