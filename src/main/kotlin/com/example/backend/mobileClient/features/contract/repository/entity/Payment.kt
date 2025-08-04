@@ -1,4 +1,4 @@
-package com.example.backend.mobileClient.features.contract.repository
+package com.example.backend.mobileClient.features.contract.repository.entity
 
 import com.example.backend.mobileClient.common.PaymentProvider
 import com.example.backend.mobileClient.common.PaymentStatus

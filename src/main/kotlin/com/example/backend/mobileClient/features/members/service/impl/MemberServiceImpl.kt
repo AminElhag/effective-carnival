@@ -36,7 +36,6 @@ class MemberServiceImpl : MemberService {
     lateinit var userDetailsService: UserDetailsService
 
     override fun createNewClient(user: MemberDto): AuthResponse {
-        println(user)
         val save = memberRepository.save(
             user.toEntity(
                 publicIdGenerator.generateNextCode(),
@@ -57,8 +56,6 @@ class MemberServiceImpl : MemberService {
             memberRepository.findByPhoneNumber(username)
         }
         if (user == null) throw UserNotFoundException(username)
-        println("User Password : "+user.password)
-        println("Request Enc Password : "+encryptedPassword.encode(password))
 
         if (!encryptedPassword.matches(password, user.password)) {
             throw IncorrectPasswordException()

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service
 @Service
 class MembershipServiceImpl : MembershipService {
 
-
     override fun getMemberships(): List<PaymentPlanDto> {
         return plans.map {
             it.toDto()

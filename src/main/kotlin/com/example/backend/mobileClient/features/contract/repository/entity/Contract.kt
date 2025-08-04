@@ -1,4 +1,4 @@
-package com.example.backend.mobileClient.features.contract.repository
+package com.example.backend.mobileClient.features.contract.repository.entity
 
 import com.example.backend.mobileClient.common.ContractStatus
 import com.example.backend.mobileClient.common.ContractType

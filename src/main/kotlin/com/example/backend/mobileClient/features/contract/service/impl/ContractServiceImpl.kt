@@ -4,17 +4,20 @@ import com.example.backend.mobileClient.common.*
 import com.example.backend.mobileClient.contract
 import com.example.backend.mobileClient.discounts
 import com.example.backend.mobileClient.features.contract.controller.models.PaymentResponse
-import com.example.backend.mobileClient.features.contract.repository.Contract
-import com.example.backend.mobileClient.features.contract.repository.Payment
+import com.example.backend.mobileClient.features.contract.repository.ContractRepository
+import com.example.backend.mobileClient.features.contract.repository.entity.Contract
+import com.example.backend.mobileClient.features.contract.repository.entity.Payment
 import com.example.backend.mobileClient.features.contract.service.ContractService
 import com.example.backend.mobileClient.features.contract.service.dto.CheckoutInitDto
 import com.example.backend.mobileClient.features.contract.service.dto.ContractDto
 import com.example.backend.mobileClient.features.contract.service.dto.PaymentDto
 import com.example.backend.mobileClient.features.discount.repository.entity.Discount
 import com.example.backend.mobileClient.features.employee.repository.entity.Employee
+import com.example.backend.mobileClient.features.members.repository.MemberRepository
 import com.example.backend.mobileClient.features.members.repository.entity.Member
 import com.example.backend.mobileClient.plans
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -30,6 +33,9 @@ class ContractServiceImpl : ContractService {
 
     @Autowired
     lateinit var paymentProcessorService: PaymentProcessorService
+
+    @Autowired
+    lateinit var contractRepository: ContractRepository
 
 
     override fun checkoutInit(toDto: CheckoutInitDto): ContractDto {
@@ -51,27 +57,13 @@ class ContractServiceImpl : ContractService {
 
         val totalAmount = membershipFee + joinFee + administrationFee
 
+        val authentication = SecurityContextHolder.getContext().authentication
+        val principal = authentication.principal as Member
+
+
         val contract = Contract(
             id = 1,
-            member = Member(
-                id = 1,
-                publicId = "1001001233",
-                firstName = "Amin",
-                middleName = "Galal",
-                lastName = "Elhag",
-                idNumber = "12002010020",
-                dataOfBirth = LocalDate.now(),
-                genderId = 1,
-                phoneNumber = "010101011",
-                email = "email@email.com",
-                password = "password",
-                emergencyContact = "1234567890",
-                hearAboutUsId = 1,
-                occupation = "Test",
-                medicalConditionsIds = emptyList(),
-                isDeleted = false,
-                isValidation = true,
-            ),
+            member = principal,
             consultant = Employee(
                 id = 2,
                 firstName = "Amin",
@@ -108,11 +100,13 @@ class ContractServiceImpl : ContractService {
             totalAmount = totalAmount,
             totalAmountWithoutTax = totalAmount,
             totalTax = totalAmount,
-            totalPaid = totalAmount,
-            remainingAmount = BigDecimal.ZERO,
+            totalPaid = BigDecimal.ZERO,
+            remainingAmount = totalAmount,
         )
 
-        return contract.toDto()
+        val save = contractRepository.save(contract)
+
+        return save.toDto()
     }
 
     override fun processPayment(paymentDto: PaymentDto): PaymentResponse? {

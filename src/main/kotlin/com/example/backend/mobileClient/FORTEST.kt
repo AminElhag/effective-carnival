@@ -10,7 +10,7 @@ import com.example.backend.mobileClient.common.Gender
 import com.example.backend.mobileClient.common.PaymentMethod
 import com.example.backend.mobileClient.common.PeriodType
 import com.example.backend.mobileClient.common.PlanType
-import com.example.backend.mobileClient.features.contract.repository.Contract
+import com.example.backend.mobileClient.features.contract.repository.entity.Contract
 import com.example.backend.mobileClient.features.discount.repository.entity.Discount
 import com.example.backend.mobileClient.features.employee.repository.entity.Employee
 import com.example.backend.mobileClient.features.members.repository.entity.Member

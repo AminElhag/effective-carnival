@@ -52,7 +52,7 @@ data class Member(
     val hearAboutUsId: Int,
     @Column(name = "occupation", nullable = false)
     val occupation: String,
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(
         name = "client_medical_conditions",
         joinColumns = [JoinColumn(name = "client_id")]

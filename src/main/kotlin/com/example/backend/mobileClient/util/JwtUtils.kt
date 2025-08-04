@@ -15,7 +15,6 @@ class JwtUtils(private val jwtProperties: JwtProperties) {
     private val key: SecretKey = Keys.hmacShaKeyFor(jwtProperties.secret.toByteArray())
 
     fun generateToken(userDetails: UserDetails): String {
-        println(jwtProperties)
         return Jwts.builder()
             .setSubject(userDetails.username)
             .setIssuer(jwtProperties.issuer)

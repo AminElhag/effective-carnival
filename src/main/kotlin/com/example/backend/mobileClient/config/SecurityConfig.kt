@@ -29,7 +29,7 @@ class SecurityConfig(
                     .requestMatchers("/api/v1/client/login").permitAll()
                     .requestMatchers("/api/v1/client/register").permitAll()
                     .requestMatchers("/h2-console/**").permitAll()
-                    .anyRequest().authenticated()
+                    .anyRequest().permitAll()
             }
             .headers { headers ->
                 headers
